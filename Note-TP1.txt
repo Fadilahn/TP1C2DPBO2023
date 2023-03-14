@@ -1,0 +1,239 @@
+# Class
+============================
+Human
+Student
+Lecturer
+Laptop
+Book
+Marker
+BEM
+BEMMember
+Assistant
+EnglishClub
+EnglishClubMember
+
+
+# Class, Atribut, and Method
+============================
+Human
+- name: string
+- gender: string
++ getter()
++ eat()
++ drink()
++ sleep()
+
+Laptop
+- brand: string
+
+Student
+- nim: string
+- books: list of string
+- laptop: object
+- tasks: list of string
+- score: int
++ getter()
++ setter()
++ add(): for list
++ display(): for list
++ sumbitTask()
++ study()
++ displayAll()
+
+Lecturer
+- nip: string
+- markers: list of string
+- laptop: object
+- assistant: list of object
+- taught: boolean
++ getter()
++ add(): for list
++ diaplay(): for list
++ teach()
++ giveAssignment()
++ giveScore()
++ displayAll()
+
+BEM
+- name: string
+- members: list of object
+- prokers: list of string
++ getter()
++ add(): for list
++ diaplay(): for list
++ removeProker()
+
+BEMMember
+- evaluated: boolean
++ designProker()
++ executeProker()
++ attendEvaluation()
+
+Assistant
+- taught: boolean
++ teach()
++ giveAssignment()
+
+EnglishClub
+- member: list of object
+- prokers: list of string
++ add(): for list
++ diaplay(): for list
++ selectLeader()
+
+EnglishClubMember
+- englishLevel: int
++ learnEnglish()
++ designProker()
+
+# Simulation
+============================
+Simulation
+- lecturer: object
+- lecturers: list of object
+- student: object
+- students: list of object
+- bem: object
+- englishClub: object
++ BEMSimulation()
++ EnglishClubSimulation()
++ AssistantSimulation()
++ LecturerSimulation()
++ choiceStart()
++ choiceStudent()
++ choiceLecturer()
+
+
+# Inheritance and Composite
+============================
+Human 
+Student is a human
+Student has a laptop
+Lecturer is a human
+Lecturer has a laptop
+BEM has a BEMMember
+BEMMember is a Student
+EnglishClub has a Student
+Assistant is a Student
+Lecturer has a Assistant
+
+
+# Constrain
+============================
+Student
+Student harus mengerjakan tugas
+
+BEM has a BEMMember
+BEMMember dapat merancang proker, melaksanakan proker, dan menghadiri evaluasi.
+saat merancang proker, proker dimasukan ke list proker di BEM
+saat melaksanakan proker, artinya melaksanakan proker yang ada di BEM, lalu proker yang ada di BEM sudah ditandai terlaksana
+menghadiri evaluasi harus dilakukan ketika sudah melaksanakan proker
+merancang proker dan melaksanakan proker dapat dilakukan jika tidak ada menghadiri evaluasi, jadi jika ada menghadiri evaluasi harus dilakukan dulu
+
+Assistant
+Assistant dapat mengajar dan memberi tugas
+memberi tugas dapat dilakukan setelah mengajar
+tugas diberikan kepada student, sehingga didalam student terdapat tugas dari assistant
+
+EnglishClub has a EnglishClubMember
+EnglishClubMember sedang mempersiapkan diri untuk menjadi ketua. 
+EnglishClubMember dapat belajar bahasa inggris dan merancang proker masa depan.
+saat merancang proker masadepan, proker dimasukan kedalam list proker di kelas EnglishClub
+
+Lecturer 
+kesibukannya sama seperti Mila dapat mengajar dan memberi tugas, hanya saja beliau memiliki sistem dan beban berbeda.
+Lecturer bisa memberikan nilai kepada mahasiswa
+
+
+
+#COPY
+============================
+
+class BEMMember(Student):
+    def __init__(self, name, gender, nim):
+        super().__init__(name, gender, nim)
+
+class BEM:
+    _name = ""
+    _members = []
+
+    def __init__(self, name):
+        self._name = name
+
+dari kelas sebelumnya buatlah sistem
+
+BEM has a BEMMember
+BEMMember dapat merancang proker, melaksanakan proker, dan menghadiri evaluasi.
+saat merancang proker, proker dibuat lalu dimasukan ke list proker di BEM
+saat melaksanakan proker, artinya melaksanakan 1 proker yang ada di BEM lalu menghapusnya dari list proker BEM
+menghadiri evaluasi harus dilakukan ketika sudah melaksanakan proker
+merancang proker dan melaksanakan proker dapat dilakukan jika tidak ada menghadiri evaluasi, jadi jika ada menghadiri evaluasi harus dilakukan dulu
+
+buatkan simulasinya
+saat user memilih student yang merupakan BEMMember maka sistem akan menampilkan menu
+1. tampilkan proker
+2. merancang proker
+3. melaksanakan proker
+4. evaluasi
+
+resyad: BEMMember
+pahri: BEMMember
+angga
+getsbi
+mila
+
+---
+
+# define the EnglishClubMember class which inherits from Student
+class EnglishClubMember(Student):
+
+    def __init__(self, name, gender, nim):
+        super().__init__(name, gender, nim)
+
+
+# define the EnglishClub class
+class EnglishClub:
+    _members = []
+
+    def __init__(self):
+        pass
+    
+    def addMember(self, member):
+        self._members.append(member)
+
+dari kelas sebelumnya buatlah sistem
+
+EnglishClub has a EnglishClubMember
+EnglishClubMember sedang mempersiapkan diri untuk menjadi ketua. 
+EnglishClubMember dapat belajar bahasa inggris dan merancang proker masa depan.
+saat merancang proker masadepan, proker dimasukan kedalam list proker di kelas EnglishClub
+
+buatkan juga simulasinya
+
+---
+
+# define the Student class which inherits from Human
+class Student(Human):
+    _nim = ""
+    _books = []
+    _laptop = Laptop("")
+    _score = 0
+    _activities = []
+
+    def __init__(self, name, gender, nim):
+        super().__init__(name, gender)
+        self._nim = nim
+
+# define the Assistant class which inherits from Lecturer
+class Assistant(Student):
+    def __init__(self, name, gender, nim):
+        super().__init__(name, gender, nim)
+
+dari kelas sebelumnya buatkan sistem
+
+Assistant
+Assistant dapat mengajar dan memberi tugas
+memberi tugas dapat dilakukan setelah mengajar
+tugas diberikan kepada student, sehingga didalam student terdapat tugas dari assistant
+
+buatkan juga simulasinya
